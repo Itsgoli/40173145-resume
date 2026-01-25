@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>رزومه فاطمه گلی</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <h1> <strong>رزومه فاطمه گلی</strong> </h1>
+      <div class="contact-links">
+        <a href="mailto:f.goli1122@gmail.com">📧 f.goli1122@gmail.com</a><br>
+        <a href="https://github.com/Itsgoli" target="_blank">💻 GitHub: Itsgoli</a>
+
+      </div>
+      <br>
+      <br>
+        <a href="/login" class="btn-loginpage">🔐 ورود ادمین</a>
+      
+    </div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2>🔹 خلاصه</h2>
+      <blockquote>
+        دانشجوی مهندسی کامپیوتر در دانشگاه شهید چمران اهواز.<br>
+        علاقه‌مند به یادگیری توسعه وب و اپلیکیشن موبایل و در حال گسترش مهارت‌های فنی.
+      </blockquote>
+    </section>
+
+    <section class="education">
+      <h2>🎓 تحصیلات</h2>
+      <article>
+        <h3>دانشجوی ترم ۷ مهندسی کامپیوتر</h3>
+        <p><em>1401 – ...</em></p>
+      </article>
+    </section>
+
+    <section class="experience">
+      <h2>💼 تجربه‌های کاری</h2>
+      <article>
+        <h3>کارآموز برنامه‌نویسی — شرکت فناوران آرکا افزار</h3>
+        <p><em>تابستان 1404</em></p>
+        <ul>
+          <li>آشنایی با پیاده‌سازی منطق برنامه با پایتون</li>
+          <li>شناخت چند الگوریتم مهم برای هوش مصنوعی</li>
+          <li>همکاری با تیم طراحی برای بهبود تجربه کاربری (UX)</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="projects">
+      <h2>🚀 پروژه‌ها</h2>
+      <div class="project-cards">
+        <article>
+          <h3>🎮 بازی مسیر‌یابی</h3>
+          <p>توسعه محیط بازی برای رقابت بین الگوریتم‌های هوش مصنوعی</p>
+          <p><strong>فناوری‌ها:</strong> Python, Pygame</p>
+          <a href="https://github.com/Itsgoli/AIMazeSolver-game.git" target="_blank">🔗 مشاهده پروژه</a>
+        </article>
+
+        <article>
+          <h3>🧮 ماشین حساب اندروید</h3>
+          <p>پیاده‌سازی یک ماشین حساب کاربردی جهت تمرین توسعه اندروید</p>
+          <p><strong>فناوری‌ها:</strong> Kotlin, Android Studio</p>
+          <a href="https://github.com/Itsgoli/efficientCalculator.git" target="_blank">🔗 مشاهده پروژه</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="skills">
+      <h2>🧠 مهارت‌ها</h2>
+      <div class="skills-container">
+        <div>
+          <h3>فنی</h3>
+          <ul class="skills-list">
+            <li>HTML5 و CSS</li>
+            <li>Kotlin و توسعه اندروید</li>
+            <li>Python و پیاده‌سازی منطق برنامه</li>
+            <li>Java و JavaFX</li>
+            <li>Git و GitHub</li>
+          </ul>
+        </div>
+        <div>
+          <h3>شخصی</h3>
+          <ul class="skills-list">
+            <li>تفکر تحلیلی و خلاق</li>
+            <li>کار گروهی و ارتباط مؤثر</li>
+            <li>مدیریت زمان و انگیزه بالا</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="project-request" class="request-form">
+      <h2>📌 درخواست همکاری / پروژه</h2>
+      <form method="post" action="/request">
+        <input type="text" name="name" placeholder="نام" required>
+        <input type="email" name="email" placeholder="ایمیل" required>
+        <select name="project_type">
+          <option value="website">طراحی وب</option>
+          <option value="android">اپلیکیشن اندروید</option>
+          <option value="backend">بک‌اند</option>
+        </select>
+        <textarea name="description" placeholder="توضیح کوتاه پروژه" required></textarea>
+        <p>بودجه مدنظر (تومان) : </p>
+        <input type="number" name="budget" placeholder="بودجه تقریبی (تومان)" min="0" step="100000">
+        <button type="submit">ارسال درخواست</button>
+      </form>
+    </section>
+
+    <section class="login-online">
+      <p>💻 کاربران آنلاین: <span id="online-count">0</span></p>
+    </section>
+   
+  </main>
+
+  <footer>
+    <p>📩 در صورت تمایل به همکاری، خوشحال می‌شوم در ارتباط باشیم.</p>
+  </footer>
+
+<script>
+  const countEl = document.getElementById("online-count");
+  const ws = new WebSocket("ws://127.0.0.1:8000/ws/online");
+  ws.onmessage = (event) => countEl.textContent = event.data;
+  ws.onopen = () => console.log("WebSocket connected");
+  ws.onclose = () => console.log("WebSocket disconnected");
+</script>
+</body>
+</html>

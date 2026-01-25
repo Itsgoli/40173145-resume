@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <title>ادمین</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h2>درخواست‌های ثبت‌شده</h2>
+
+{% if data %}
+  {% for item in data %}
+    <div style="border:1px solid #ccc; margin:10px; padding:10px;">
+      <p><b>نام:</b> {{ item.name }}</p>
+      <p><b>نوع پروژه:</b> {{ item.project_type }}</p>
+
+      <div class="actions">
+
+        <form action="/admin/status/{{ item.id }}/accepted" method="get">
+          <button class="btn accept">✔ قبول</button>
+        </form>
+      
+        <form action="/admin/status/{{ item.id }}/rejected" method="get">
+          <button class="btn reject">✖ رد</button>
+        </form>
+      
+        <form action="/admin/status/{{ item.id }}/pending" method="get">
+          <button class="btn pending">⏳ انتظار</button>
+        </form>
+      
+        <form action="/admin/delete/{{ item.id }}" method="get">
+          <button class="btn delete">حذف</button>
+        </form>
+      
+      </div>
+
+
+      <details>
+    <summary>مشاهده جزئیات</summary>
+    <p><b>ایمیل:</b> {{ item.email }}</p>
+    <p><b>بودجه:</b> {{ item.budget }}</p>
+    <p><b>توضیح:</b> {{ item.description }}</p>
+    <p><b>وضعیت:</b> {{ item.status }}</p>
+  </details>
+
+    </div>
+  {% endfor %}
+{% else %}
+  <p>درخواستی وجود ندارد</p>
+{% endif %}
+
+</body>
+<footer>
+  <a href="/logout" class="btn-logout"> 🔐خروج </a>
+</footer>
+</html>
